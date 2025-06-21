@@ -18,16 +18,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout source
         uses: actions/checkout@v4
 
       - name: Install dependencies
         run: npm install
 
-      - name: Build Vite app
+      - name: Build Vite site
         run: npm run build
 
-      - name: Upload dist folder
+      - name: Upload build output
         uses: actions/upload-pages-artifact@v2
         with:
           path: ./dist
@@ -47,4 +47,5 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
+
 
