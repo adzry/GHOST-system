@@ -3,33 +3,32 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # or 'master' if your repo uses that
+      - main  # or 'master' if that's your default branch
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: ⬇️ Checkout repo
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: ⚙️ Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      - name: Install dependencies
+      - name: 📦 Install dependencies
         run: npm install
 
-      - name: Build project
+      - name: 🛠 Build project
         run: npm run build
 
-      - name: Upload to GitHub Pages
+      - name: 🚀 Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+
